@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerFragmentAdapter adapter = new ViewPagerFragmentAdapter(this);
         viewPager.setAdapter(adapter);
 
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                viewPager.setUserInputEnabled(position != 2);
+            }
+        });
+
+
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
@@ -34,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
                     tab.setIcon(R.drawable.ic_dashboard_black_24dp);
                     break;
                 case 1:
-                    tab.setText(R.string.title_home);
-                    tab.setIcon(R.drawable.ic_home_black_24dp);
+                    tab.setText(R.string.title_pair);
+                    tab.setIcon(R.drawable.ic_link_black_24dp);
                     break;
                 case 2:
-                    tab.setText(R.string.title_notifications);
-                    tab.setIcon(R.drawable.ic_notifications_black_24dp);
+                    tab.setText(R.string.title_map);
+                    tab.setIcon(R.drawable.ic_map_black_24dp);
                     break;
             }
         }).attach();

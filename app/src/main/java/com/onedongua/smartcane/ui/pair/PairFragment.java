@@ -1,4 +1,4 @@
-package com.onedongua.smartcane.ui.home;
+package com.onedongua.smartcane.ui.pair;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.onedongua.smartcane.databinding.FragmentHomeBinding;
+import com.onedongua.smartcane.databinding.FragmentDashboardBinding;
+import com.onedongua.smartcane.databinding.FragmentPairBinding;
 
-public class HomeFragment extends Fragment {
+public class PairFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentPairBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        PairViewModel pairViewModel =
+                new ViewModelProvider(this).get(PairViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentPairBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.text;
+        pairViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

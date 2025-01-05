@@ -8,6 +8,8 @@ lifecycleViewmodelKtx = "2.8.7"
 navigationFragment = "2.8.5"
 navigationUi = "2.8.5"
 viewpager2 = "1.1.0"
+amap-map2d = "6.0.0"
+amap-location = "6.4.9"
 
 [libraries]
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -18,6 +20,8 @@ lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-view
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+amap-map2d = { group = "com.amap.api", name = "map2d", version.ref = "amap-map2d"}
+amap-location = { group = "com.amap.api", name = "location", version.ref = "amap-location"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

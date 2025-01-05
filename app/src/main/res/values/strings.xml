@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">青除杖碍</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">仪表盘</string>
+    <string name="title_pair">配对</string>
+    <string name="title_map">地图</string>
+    <string name="enable">启用</string>
+    <string name="disable">禁用</string>
+    <string name="locate">定位</string>
+    <string name="permission_denied">权限被拒绝</string>
 </resources>

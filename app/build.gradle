@@ -27,6 +27,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    /*sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }*/
 }
 
 dependencies {
@@ -38,4 +43,6 @@ dependencies {
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     implementation libs.viewpager2
+    implementation libs.amap.map2d
+    //implementation files('libs/AMap2DMap_6.0.0_AMapSearch_9.7.4_AMapLocation_6.4.9_20241226.aar')
 }

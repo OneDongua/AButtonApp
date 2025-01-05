@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.onedongua.smartcane.ui.dashboard.DashboardFragment;
-import com.onedongua.smartcane.ui.home.HomeFragment;
-import com.onedongua.smartcane.ui.notifications.NotificationsFragment;
+import com.onedongua.smartcane.ui.map.MapFragment;
+import com.onedongua.smartcane.ui.pair.PairFragment;
 
 public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
 
@@ -20,9 +20,9 @@ public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new HomeFragment();
+                return new PairFragment();
             case 2:
-                return new NotificationsFragment();
+                return new MapFragment();
             case 0:
             default:
                 return new DashboardFragment();
