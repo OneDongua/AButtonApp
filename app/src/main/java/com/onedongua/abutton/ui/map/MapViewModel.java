@@ -1,4 +1,4 @@
-package com.onedongua.smartcane.ui.map;
+package com.onedongua.abutton.ui.map;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,7 +16,7 @@ public class MapViewModel extends ViewModel {
         return mLocating;
     }
 
-    public void changeLocating() {
+    public void switchLocating() {
         mLocating.setValue(!mLocating.getValue());
     }
 }

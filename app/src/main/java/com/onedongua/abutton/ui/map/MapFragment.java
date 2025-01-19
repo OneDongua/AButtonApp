@@ -1,4 +1,4 @@
-package com.onedongua.smartcane.ui.map;
+package com.onedongua.abutton.ui.map;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -19,8 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.MyLocationStyle;
-import com.onedongua.smartcane.R;
-import com.onedongua.smartcane.databinding.FragmentMapBinding;
+import com.onedongua.abutton.R;
+import com.onedongua.abutton.databinding.FragmentMapBinding;
 
 public class MapFragment extends Fragment {
 
@@ -43,7 +43,7 @@ public class MapFragment extends Fragment {
         mapView.onCreate(savedInstanceState);
 
         btnLocating = binding.btnLocating;
-        btnLocating.setOnClickListener(v -> viewModel.changeLocating());
+        btnLocating.setOnClickListener(v -> viewModel.switchLocating());
         viewModel.getLocating().observe(getViewLifecycleOwner(), bool -> {
             btnLocating.setText(getString(bool ? R.string.disable : R.string.enable)
                     + getString(R.string.locate));
@@ -57,15 +57,13 @@ public class MapFragment extends Fragment {
         return root;
     }
 
-    private boolean checkLocationPermission() {
+    private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
-            return false;
         }
-        return true;
     }
 
     private void initMap() {

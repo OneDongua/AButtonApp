@@ -1,4 +1,4 @@
-package com.onedongua.smartcane;
+package com.onedongua.abutton;
 
 import android.os.Bundle;
 
@@ -7,8 +7,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.onedongua.smartcane.adapter.ViewPagerFragmentAdapter;
-import com.onedongua.smartcane.databinding.ActivityMainBinding;
+import com.onedongua.abutton.adapter.ViewPagerFragmentAdapter;
+import com.onedongua.abutton.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

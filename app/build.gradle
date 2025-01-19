@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.onedongua.smartcane'
+    namespace 'com.onedongua.abutton'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.onedongua.smartcane"
+        applicationId "com.onedongua.abutton"
         minSdk 23
         targetSdk 34
         versionCode 1

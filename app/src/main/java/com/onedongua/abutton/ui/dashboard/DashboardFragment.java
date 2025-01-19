@@ -1,4 +1,4 @@
-package com.onedongua.smartcane.ui.pair;
+package com.onedongua.abutton.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,23 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.onedongua.smartcane.databinding.FragmentDashboardBinding;
-import com.onedongua.smartcane.databinding.FragmentPairBinding;
+import com.onedongua.abutton.databinding.FragmentDashboardBinding;
 
-public class PairFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
-    private FragmentPairBinding binding;
+    private FragmentDashboardBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        PairViewModel pairViewModel =
-                new ViewModelProvider(this).get(PairViewModel.class);
+        DashboardViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        binding = FragmentPairBinding.inflate(inflater, container, false);
+        binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.text;
-        pairViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textDashboard;
+        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

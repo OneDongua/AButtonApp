@@ -1,13 +1,13 @@
-package com.onedongua.smartcane.adapter;
+package com.onedongua.abutton.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.onedongua.smartcane.ui.dashboard.DashboardFragment;
-import com.onedongua.smartcane.ui.map.MapFragment;
-import com.onedongua.smartcane.ui.pair.PairFragment;
+import com.onedongua.abutton.ui.dashboard.DashboardFragment;
+import com.onedongua.abutton.ui.map.MapFragment;
+import com.onedongua.abutton.ui.pair.PairFragment;
 
 public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
 
