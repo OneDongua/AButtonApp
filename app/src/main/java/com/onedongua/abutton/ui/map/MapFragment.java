@@ -16,9 +16,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.MapsInitializer;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.onedongua.abutton.R;
 import com.onedongua.abutton.databinding.FragmentMapBinding;
 
@@ -38,6 +39,9 @@ public class MapFragment extends Fragment {
 
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        MapsInitializer.updatePrivacyShow(requireContext(), true, true);
+        MapsInitializer.updatePrivacyAgree(requireContext(), true);
 
         mapView = binding.map;
         mapView.onCreate(savedInstanceState);
@@ -69,7 +73,7 @@ public class MapFragment extends Fragment {
     private void initMap() {
         aMap = mapView.getMap();
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
         myLocationStyle.interval(2000);
         myLocationStyle.showMyLocation(true); // 设置是否显示定位小蓝点
         aMap.setMyLocationStyle(myLocationStyle);
@@ -79,7 +83,7 @@ public class MapFragment extends Fragment {
 
     private void setMyLocationEnabled(boolean bool) {
         aMap.setMyLocationEnabled(bool);
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);
+        aMap.getUiSettings().setMyLocationButtonEnabled(bool);
     }
 
     @Override
