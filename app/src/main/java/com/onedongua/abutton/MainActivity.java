@@ -2,7 +2,6 @@ package com.onedongua.abutton;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -10,7 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.onedongua.abutton.adapter.ViewPagerFragmentAdapter;
 import com.onedongua.abutton.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
 
@@ -39,19 +38,22 @@ public class MainActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText(R.string.title_dashboard);
-                    tab.setIcon(R.drawable.ic_dashboard_black_24dp);
+                    tab.setText(R.string.title_notifications);
+                    tab.setIcon(R.drawable.ic_notifications);
                     break;
                 case 1:
-                    tab.setText(R.string.title_pair);
-                    tab.setIcon(R.drawable.ic_link_black_24dp);
+                    tab.setText(R.string.title_post);
+                    tab.setIcon(R.drawable.ic_post);
                     break;
                 case 2:
                     tab.setText(R.string.title_map);
-                    tab.setIcon(R.drawable.ic_map_black_24dp);
+                    tab.setIcon(R.drawable.ic_map);
+                    break;
+                case 3:
+                    tab.setText(R.string.title_account);
+                    tab.setIcon(R.drawable.ic_account);
                     break;
             }
         }).attach();
     }
-
 }

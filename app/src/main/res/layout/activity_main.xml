@@ -16,10 +16,11 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:tabIconTint="@color/bottom_tab_colors"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/teal"
-        app:tabTextColor="@color/gray" />
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextColor="?attr/colorOnSecondary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

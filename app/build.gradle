@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application' version '8.7.3'
 }
 
 android {
@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "com.onedongua.abutton"
         minSdk 23
+        //noinspection OldTargetApi
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -38,14 +39,18 @@ android {
 }
 
 dependencies {
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.constraintlayout
-    implementation libs.lifecycle.livedata.ktx
-    implementation libs.lifecycle.viewmodel.ktx
-    implementation libs.navigation.fragment
-    implementation libs.navigation.ui
-    implementation libs.viewpager2
-    implementation libs.amap.map3d
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "com.google.android.material:material:1.12.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.0"
+    implementation "androidx.navigation:navigation-fragment:2.8.5"
+    implementation "androidx.navigation:navigation-ui:2.8.5"
+    implementation "androidx.viewpager2:viewpager2:1.1.0"
+    implementation "com.amap.api:3dmap:9.8.3"
+    implementation "de.hdodenhof:circleimageview:3.1.0"
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
+
+    //implementation "com.amap.api:location:6.4.9"
     //implementation files('libs/AMap2DMap_6.0.0_AMapSearch_9.7.4_AMapLocation_6.4.9_20241226.aar')
+
 }

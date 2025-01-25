@@ -25,5 +25,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Smart Cane"
+rootProject.name = "A Button"
 include ':app'

@@ -10,13 +10,16 @@
         android:layout_height="match_parent"
         app:layout_constraintBaseline_toBaselineOf="parent">
 
-        <Button
-            android:id="@+id/btn_locating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/disable" />
 
     </com.amap.api.maps.MapView>
+
+    <Button
+        android:id="@+id/btn_locating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:backgroundTint="?attr/colorPrimaryVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

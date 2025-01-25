@@ -1,4 +1,4 @@
-package com.onedongua.abutton.ui.pair;
+package com.onedongua.abutton.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,24 +8,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.onedongua.abutton.databinding.FragmentPairBinding;
+import com.onedongua.abutton.databinding.FragmentPostBinding;
 
-public class PairFragment extends Fragment {
+public class PostFragment extends Fragment {
 
-    private FragmentPairBinding binding;
+    private FragmentPostBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        PairViewModel pairViewModel =
-                new ViewModelProvider(this).get(PairViewModel.class);
 
-        binding = FragmentPairBinding.inflate(inflater, container, false);
+        binding = FragmentPostBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.text;
-        pairViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        textView.setText("This is post fragment");
         return root;
     }
 
