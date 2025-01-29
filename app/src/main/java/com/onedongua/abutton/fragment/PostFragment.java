@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
+import com.onedongua.abutton.BaseFragment;
 import com.onedongua.abutton.databinding.FragmentPostBinding;
 
-public class PostFragment extends Fragment {
+public class PostFragment extends BaseFragment {
 
     private FragmentPostBinding binding;
 

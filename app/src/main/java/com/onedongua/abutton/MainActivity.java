@@ -30,10 +30,28 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                int titleId;
+                switch (position) {
+                    case 0:
+                        titleId = R.string.title_notifications;
+                        break;
+                    case 1:
+                        titleId = R.string.title_post;
+                        break;
+                    case 2:
+                        titleId = R.string.title_map;
+                        break;
+                    case 3:
+                        titleId = R.string.title_account;
+                        break;
+                    default:
+                        titleId = R.string.app_name;
+                }
+                actionBar.setTitle(titleId);
+
                 viewPager.setUserInputEnabled(position != 2);
             }
         });
-
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {

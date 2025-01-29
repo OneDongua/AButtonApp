@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
+import com.onedongua.abutton.BaseFragment;
 import com.onedongua.abutton.LoginActivity;
 import com.onedongua.abutton.R;
 import com.onedongua.abutton.databinding.FragmentAccountBinding;
@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AccountFragment extends Fragment {
+public class AccountFragment extends BaseFragment {
     private static final String TAG = "AccountFragment";
     private FragmentAccountBinding binding;
     private LinearLayout accountBackground;
