@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.onedongua.abutton.data.NotificationItem;
 import com.onedongua.abutton.databinding.ItemNotificationBinding;
+import com.onedongua.abutton.model.NotificationItem;
 
 import java.text.DateFormat;
 import java.util.Date;

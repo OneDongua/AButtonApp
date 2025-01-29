@@ -1,9 +1,12 @@
-package com.onedongua.abutton.data;
+package com.onedongua.abutton.model;
 
 public class NotificationItem {
     private String content;
     private long time;
     private String from;
+
+    public NotificationItem() {
+    }
 
     public NotificationItem(String content, long time, String from) {
         this.content = content;
@@ -33,5 +36,14 @@ public class NotificationItem {
 
     public void setFrom(String from) {
         this.from = from;
+    }
+
+    @Override
+    public String toString() {
+        return "NotificationItem{" +
+                "content='" + content + '\'' +
+                ", time=" + time +
+                ", from='" + from + '\'' +
+                '}';
     }
 }

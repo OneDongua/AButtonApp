@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,14 +90,14 @@ public class MapFragment extends Fragment {
     }
 
     private void setMyLocationEnabled(boolean bool) {
-        if (bool) {
+        /*if (bool) {
             myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);
             aMap.setMyLocationStyle(myLocationStyle);
             new Handler().postDelayed(() -> {
                 myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
                 aMap.setMyLocationStyle(myLocationStyle);
             }, 10000);
-        }
+        }*/
         aMap.setMyLocationEnabled(bool);
         aMap.getUiSettings().setMyLocationButtonEnabled(bool);
         isLocating = bool;
@@ -133,6 +132,5 @@ public class MapFragment extends Fragment {
     private void initializeAMapPreSettings() {
         MapsInitializer.updatePrivacyShow(requireContext(), true, true);
         MapsInitializer.updatePrivacyAgree(requireContext(), true);
-        MapsInitializer.setApiKey("7bdd910be2fc977e20a5fbf1037831a3");
     }
 }

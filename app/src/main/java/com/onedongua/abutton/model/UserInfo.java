@@ -12,11 +12,9 @@ public class UserInfo {
     private String hardware;
     private ArrayList<String> disability;
 
-    // 无参构造函数
     public UserInfo() {
     }
 
-    // 有参构造函数
     public UserInfo(String id, String type, String name, String email, ArrayList<String> disability) {
         this.id = id;
         this.type = type;
@@ -26,7 +24,6 @@ public class UserInfo {
         this.disability = disability;
     }
 
-    // Getter 和 Setter 方法
     public String getId() {
         return id;
     }
@@ -75,7 +72,6 @@ public class UserInfo {
         this.disability = disability;
     }
 
-    // toString 方法
     @NonNull
     @Override
     public String toString() {

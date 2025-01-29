@@ -1,6 +1,9 @@
 package com.onedongua.abutton;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -12,6 +15,9 @@ import com.onedongua.abutton.databinding.ActivityMainBinding;
 public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
+    private ViewPagerFragmentAdapter adapter;
+    private int position;
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,29 +29,35 @@ public class MainActivity extends BaseActivity {
         ViewPager2 viewPager = binding.viewPager;
         TabLayout tabLayout = binding.tabLayout;
 
-        ViewPagerFragmentAdapter adapter = new ViewPagerFragmentAdapter(this);
+        adapter = new ViewPagerFragmentAdapter(this);
         viewPager.setAdapter(adapter);
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                MainActivity.this.position = position;
                 int titleId;
                 switch (position) {
                     case 0:
                         titleId = R.string.title_notifications;
+                        if (menuItem != null) menuItem.setVisible(true);
                         break;
                     case 1:
                         titleId = R.string.title_post;
+                        if (menuItem != null) menuItem.setVisible(true);
                         break;
                     case 2:
                         titleId = R.string.title_map;
+                        if (menuItem != null) menuItem.setVisible(false);
                         break;
                     case 3:
                         titleId = R.string.title_account;
+                        if (menuItem != null) menuItem.setVisible(false);
                         break;
                     default:
                         titleId = R.string.app_name;
+                        if (menuItem != null) menuItem.setVisible(false);
                 }
                 actionBar.setTitle(titleId);
 
@@ -73,5 +85,24 @@ public class MainActivity extends BaseActivity {
                     break;
             }
         }).attach();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menuItem = menu.findItem(R.id.action_refresh);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            View.OnClickListener listener = adapter.getOnRefreshListener(position);
+            if (listener != null) listener.onClick(item.getActionView());
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
