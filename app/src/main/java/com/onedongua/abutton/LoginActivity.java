@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.material.textfield.TextInputLayout;
 import com.onedongua.abutton.databinding.AcitvityLoginBinding;
+import com.onedongua.abutton.manager.ServerManager;
 import com.onedongua.abutton.model.LoginData;
 import com.onedongua.abutton.model.UserInfo;
 import com.onedongua.abutton.util.JsonUtils;
@@ -38,6 +39,7 @@ public class LoginActivity extends BaseActivity {
     private TextView loginButtonText;
     private TextView loginForgot;
     private TextView loginRegister;
+    private ServerManager serverManager;
 
     // 正则表达式用于验证邮箱
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
@@ -49,6 +51,8 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = AcitvityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        serverManager = ServerManager.getInstance();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -117,7 +121,7 @@ public class LoginActivity extends BaseActivity {
         RequestBody requestBody = RequestBody.create(json, JSON);
 
         Request request = new Request.Builder()
-                .url("http://192.168.2.30:3001/api/login")
+                .url(serverManager.getServer() + "api/login")
                 .post(requestBody)
                 .build();
 

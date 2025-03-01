@@ -27,7 +27,9 @@ public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new PostFragment();
+                PostFragment postFragment = new PostFragment();
+                listeners.put(1, postFragment.getOnRefreshListener());
+                return postFragment;
             case 2:
                 return new MapFragment();
             case 3:

@@ -15,6 +15,7 @@ import com.onedongua.abutton.BaseFragment;
 import com.onedongua.abutton.R;
 import com.onedongua.abutton.adapter.NotificationAdapter;
 import com.onedongua.abutton.databinding.FragmentNotificationsBinding;
+import com.onedongua.abutton.manager.ServerManager;
 import com.onedongua.abutton.model.NotificationData;
 import com.onedongua.abutton.model.NotificationItem;
 import com.onedongua.abutton.model.UserInfo;
@@ -38,12 +39,15 @@ public class NotificationFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private NotificationAdapter adapter;
     private final List<NotificationItem> itemList = new ArrayList<>();
+    private ServerManager serverManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        serverManager = ServerManager.getInstance();
 
         recyclerView = binding.notificationRecycler;
         adapter = new NotificationAdapter(itemList, position -> {
@@ -86,7 +90,8 @@ public class NotificationFragment extends BaseFragment {
             return;
         }
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url("http://192.168.2.30:3001/api/notification/" + email)
+        Request request = new Request.Builder()
+                .url(serverManager.getServer() + "api/notification/" + email)
                 .get()
                 .build();
 

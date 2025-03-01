@@ -29,6 +29,7 @@
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
     <string name="notification_empty">无通知</string>
+    <string name="post_empty">无</string>
     <string name="action_refresh">刷新</string>
     <string name="refresh_success">刷新成功</string>
     <string name="image">图片</string>

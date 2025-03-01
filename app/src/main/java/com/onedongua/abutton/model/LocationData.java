@@ -1,5 +1,7 @@
 package com.onedongua.abutton.model;
 
+import androidx.annotation.NonNull;
+
 public class LocationData {
     private double latitude;
     private double longitude;
@@ -36,5 +38,14 @@ public class LocationData {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    @NonNull
+    public String toString() {
+        return "LocationData{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", altitude=" + altitude +
+                '}';
     }
 }
