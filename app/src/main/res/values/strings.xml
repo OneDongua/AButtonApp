@@ -33,4 +33,6 @@
     <string name="action_refresh">刷新</string>
     <string name="refresh_success">刷新成功</string>
     <string name="image">图片</string>
+    <string name="setting">设置</string>
+    <string name="server_setting">服务器设置</string>
 </resources>

@@ -83,7 +83,12 @@ public class NotificationFragment extends BaseFragment {
     private void fetchNotification() {
         final String email;
         try {
-            email = JsonUtils.fromJsonFile(new File(requireActivity().getFilesDir(), "user.json"), UserInfo.class).getEmail();
+            UserInfo userInfo = JsonUtils.fromJsonFile(new File(requireActivity().getFilesDir(), "user.json"), UserInfo.class);
+            if (userInfo == null) {
+                print(R.string.unknown_error);
+                return;
+            }
+            email = userInfo.getEmail();
         } catch (IOException e) {
             print(R.string.unknown_error);
             Log.e(TAG, "fetchNotification: ", e);

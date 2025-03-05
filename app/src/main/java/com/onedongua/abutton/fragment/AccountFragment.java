@@ -28,6 +28,7 @@ public class AccountFragment extends BaseFragment {
     private static final String TAG = "AccountFragment";
     private FragmentAccountBinding binding;
     private LinearLayout accountBackground;
+    private LinearLayout settingsItem;
     private CircleImageView accountAvatar;
     private TextView accountName;
     private TextView accountHardware;
@@ -48,6 +49,7 @@ public class AccountFragment extends BaseFragment {
         accountName = binding.accountName;
         accountHardware = binding.accountHardware;
         accountId = binding.accountId;
+        settingsItem = binding.settingsItem;
 
         accountBackground.setOnClickListener(this::onAccountBackgroundClick);
 
@@ -102,5 +104,9 @@ public class AccountFragment extends BaseFragment {
         } catch (IOException e) {
             Log.e(TAG, "refreshAccount: ", e);
         }
+    }
+
+    private void onSettingsItemClick(View v) {
+
     }
 }

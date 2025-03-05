@@ -35,6 +35,11 @@ public class ServerManager {
         return instance;
     }
 
+    public void addServer(String server) {
+        allServers.add(server);
+        checkAvailable();
+    }
+
     public String getServer() {
         if (!availableServers.isEmpty()) {
             return availableServers.get(0);
