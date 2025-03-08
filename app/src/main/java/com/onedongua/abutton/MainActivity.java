@@ -1,6 +1,10 @@
 package com.onedongua.abutton;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +15,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.onedongua.abutton.adapter.ViewPagerFragmentAdapter;
 import com.onedongua.abutton.databinding.ActivityMainBinding;
+
+import java.security.MessageDigest;
 
 public class MainActivity extends BaseActivity {
 
@@ -85,6 +91,8 @@ public class MainActivity extends BaseActivity {
                     break;
             }
         }).attach();
+
+        //SHA1(this);
     }
 
     @Override
@@ -104,6 +112,27 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void SHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : publicKey) {
+                String appendString = Integer.toHexString(0xFF & b).toUpperCase();
+                if (appendString.length() == 1) hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            Log.i("SHA1", "SHA1: " + result.substring(0, result.length() - 1));
+        } catch (Exception e) {
+            Log.e("SHA1", "SHA1: ", e);
+        }
     }
 
 }

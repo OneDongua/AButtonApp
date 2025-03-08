@@ -69,8 +69,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
         holder.time.setText(dateFormat.format(new Date(item.getTime())));
 
-        LatLonPoint latLonPoint = new LatLonPoint(item.getLocation().getLongitude(), item.getLocation().getLatitude());
-        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 100, GeocodeSearch.AMAP);
+        LatLonPoint latLonPoint = new LatLonPoint(item.getLocation().getLatitude(), item.getLocation().getLongitude());
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 100, GeocodeSearch.GPS);
         try {
             GeocodeSearch search = new GeocodeSearch(context);
             search.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import com.onedongua.abutton.BaseFragment;
 import com.onedongua.abutton.LoginActivity;
 import com.onedongua.abutton.R;
+import com.onedongua.abutton.SettingActivity;
 import com.onedongua.abutton.databinding.FragmentAccountBinding;
 import com.onedongua.abutton.model.UserInfo;
 import com.onedongua.abutton.util.JsonUtils;
@@ -52,6 +53,7 @@ public class AccountFragment extends BaseFragment {
         settingsItem = binding.settingsItem;
 
         accountBackground.setOnClickListener(this::onAccountBackgroundClick);
+        settingsItem.setOnClickListener(this::onSettingsItemClick);
 
         return root;
     }
@@ -107,6 +109,7 @@ public class AccountFragment extends BaseFragment {
     }
 
     private void onSettingsItemClick(View v) {
-
+        Intent intent = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent);
     }
 }

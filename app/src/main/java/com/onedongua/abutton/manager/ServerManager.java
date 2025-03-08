@@ -44,6 +44,7 @@ public class ServerManager {
         if (!availableServers.isEmpty()) {
             return availableServers.get(0);
         } else {
+            if (allServers.isEmpty()) return "http://localhost/";
             return allServers.get(0);
         }
     }

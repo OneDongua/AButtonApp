@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity {
     private TextView loginButtonText;
     private TextView loginForgot;
     private TextView loginRegister;
-    private ServerManager serverManager;
+    private final ServerManager serverManager = ServerManager.getInstance();
 
     // 正则表达式用于验证邮箱
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
@@ -51,8 +51,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = AcitvityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        serverManager = ServerManager.getInstance();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

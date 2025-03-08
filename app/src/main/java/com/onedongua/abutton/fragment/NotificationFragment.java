@@ -39,15 +39,13 @@ public class NotificationFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private NotificationAdapter adapter;
     private final List<NotificationItem> itemList = new ArrayList<>();
-    private ServerManager serverManager;
+    private final ServerManager serverManager = ServerManager.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        serverManager = ServerManager.getInstance();
 
         recyclerView = binding.notificationRecycler;
         adapter = new NotificationAdapter(itemList, position -> {
@@ -69,10 +67,7 @@ public class NotificationFragment extends BaseFragment {
     }
 
     public View.OnClickListener getOnRefreshListener() {
-        return v -> {
-            fetchNotification();
-            print(R.string.refresh_success);
-        };
+        return v -> fetchNotification();
     }
 
     private void refreshNotification() {
@@ -85,7 +80,7 @@ public class NotificationFragment extends BaseFragment {
         try {
             UserInfo userInfo = JsonUtils.fromJsonFile(new File(requireActivity().getFilesDir(), "user.json"), UserInfo.class);
             if (userInfo == null) {
-                print(R.string.unknown_error);
+                print(R.string.not_login);
                 return;
             }
             email = userInfo.getEmail();
@@ -109,21 +104,24 @@ public class NotificationFragment extends BaseFragment {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        try {
-                            NotificationData data = JsonUtils.fromJson(response.body().string(), NotificationData.class);
-                            itemList.clear();
-                            itemList.addAll(data.getNotifications());
-                            requireActivity().runOnUiThread(() -> refreshNotification());
-                            return;
-                        } catch (IOException e) {
-                            Log.e(TAG, "onResponse: ", e);
-                        }
-                    }
+                if (!response.isSuccessful() || response.body() == null) {
+                    requireActivity().runOnUiThread(() -> print(R.string.unknown_error));
+                    return;
+                }
+                try {
+                    NotificationData data = JsonUtils.fromJson(response.body().string(), NotificationData.class);
+                    itemList.clear();
+                    itemList.addAll(data.getNotifications());
+                    requireActivity().runOnUiThread(() -> {
+                        refreshNotification();
+                        print(R.string.refresh_success);
+                    });
+                } catch (IOException e) {
+                    Log.e(TAG, "onResponse: ", e);
                     requireActivity().runOnUiThread(() -> print(R.string.unknown_error));
                 }
             }
         });
+
     }
 }

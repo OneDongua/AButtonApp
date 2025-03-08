@@ -1,6 +1,7 @@
 package com.onedongua.abutton.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.onedongua.abutton.BaseFragment;
+import com.onedongua.abutton.PostDetailActivity;
 import com.onedongua.abutton.R;
 import com.onedongua.abutton.adapter.PostAdapter;
 import com.onedongua.abutton.databinding.FragmentPostBinding;
@@ -39,7 +41,7 @@ public class PostFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private PostAdapter adapter;
     private final ArrayList<PostItem> itemList = new ArrayList<>();
-    private ServerManager serverManager;
+    private final ServerManager serverManager = ServerManager.getInstance();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -48,11 +50,11 @@ public class PostFragment extends BaseFragment {
         binding = FragmentPostBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        serverManager = ServerManager.getInstance();
-
         recyclerView = binding.postRecycler;
         adapter = new PostAdapter(requireContext(), itemList, position -> {
-            print("TODO");
+            Intent intent = new Intent(requireContext(), PostDetailActivity.class);
+            intent.putExtra("postId", itemList.get(position).getId());
+            startActivity(intent);
         });
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

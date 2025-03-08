@@ -34,5 +34,10 @@
     <string name="refresh_success">刷新成功</string>
     <string name="image">图片</string>
     <string name="setting">设置</string>
-    <string name="server_setting">服务器设置</string>
+    <string name="server_setting">添加服务器</string>
+    <string name="not_login">未登录</string>
+    <string name="success">成功</string>
+    <string name="post_detail">详情</string>
+    <string name="title">标题</string>
+    <string name="content">内容</string>
 </resources>

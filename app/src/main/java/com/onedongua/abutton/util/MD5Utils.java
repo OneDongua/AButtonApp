@@ -18,7 +18,7 @@ public class MD5Utils {
 
             StringBuilder stringBuilder = new StringBuilder();
             for (byte b : digestBytes) {
-                stringBuilder.append(String.format("%02x", b));
+                stringBuilder.append(String.format("%02x", b)); // %02x 表示将字节转换为十六进制字符串，并保留两位
             }
 
             return stringBuilder.toString();
