@@ -23,6 +23,7 @@ import com.onedongua.abutton.widget.ToggleSwitchView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -35,8 +36,10 @@ public class AccountFragment extends BaseFragment {
     private TextView accountName;
     private TextView accountHardware;
     private TextView accountId;
+    private LinearLayout tag;
     private File userFile;
     private ToggleSwitchView toggleSwitch;
+    private int mode = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,19 +57,14 @@ public class AccountFragment extends BaseFragment {
         accountId = binding.accountId;
         settingsItem = binding.settingsItem;
         toggleSwitch = binding.toggleSwitch;
+        tag = binding.tag;
 
         accountBackground.setOnClickListener(this::onAccountBackgroundClick);
         settingsItem.setOnClickListener(this::onSettingsItemClick);
 
         toggleSwitch.setOnToggleSwitchListener(position -> {
-            switch (position) {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-            }
+            mode = position;
+            refreshTag();
         });
 
         return root;
@@ -117,8 +115,36 @@ public class AccountFragment extends BaseFragment {
             accountId.setText(user.getId());
             if (!user.getHardware().isEmpty())
                 accountHardware.setText(user.getHardware());
+
+            refreshTag();
         } catch (IOException e) {
             Log.e(TAG, "refreshAccount: ", e);
+        }
+    }
+
+    private void refreshTag() {
+        try {
+            UserInfo user = JsonUtils.fromJsonFile(userFile, UserInfo.class);
+            ArrayList<String> list = new ArrayList<>();
+            switch (mode) {
+                case 0:
+                    list = user.getTag();
+                    break;
+                case 1:
+                case 2:
+                    list = user.getDisability();
+                    break;
+            }
+            if (list != null) {
+                tag.removeAllViews();
+                for (String t : list) {
+                    LinearLayout tagLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.item_tag, null);
+                    ((TextView) tagLayout.findViewById(R.id.tag_text)).setText(t);
+                    tag.addView(tagLayout);
+                }
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "refreshTag: ", e);
         }
     }
 

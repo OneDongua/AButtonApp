@@ -43,6 +43,10 @@
     <string name="content">内容</string>
     <string name="bind_hardware">绑定硬件</string>
     <string name="set_tag">设置标签</string>
+    <string name="tag">标签:</string>
     <string name="work_empty">无工作</string>
     <string name="title_work">工作</string>
+    <string name="private_notification">与我相关</string>
+    <string name="global_notification">全局通知</string>
+    <string name="loading">加载中…</string>
 </resources>

@@ -11,17 +11,25 @@ public class UserInfo {
     private String email;
     private String hardware;
     private ArrayList<String> disability;
+    private ArrayList<String> tag;
 
     public UserInfo() {
     }
 
-    public UserInfo(String id, String type, String name, String email, ArrayList<String> disability) {
+    public UserInfo(String id,
+                    String type,
+                    String name,
+                    String email,
+                    String hardware,
+                    ArrayList<String> disability,
+                    ArrayList<String> tag) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.email = email;
         this.hardware = hardware;
         this.disability = disability;
+        this.tag = tag;
     }
 
     public String getId() {
@@ -72,6 +80,14 @@ public class UserInfo {
         this.disability = disability;
     }
 
+    public ArrayList<String> getTag() {
+        return tag;
+    }
+
+    public void setTag(ArrayList<String> tag) {
+        this.tag = tag;
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -82,6 +98,7 @@ public class UserInfo {
                 ", email='" + email + '\'' +
                 ", hardware='" + hardware + '\'' +
                 ", disability='" + disability + '\'' +
+                ", tag='" + tag + '\'' +
                 '}';
     }
 }

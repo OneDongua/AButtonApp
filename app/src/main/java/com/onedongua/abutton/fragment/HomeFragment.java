@@ -15,7 +15,8 @@ import com.onedongua.abutton.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
-    private View.OnClickListener refreshListener;
+    private final NotificationFragment notificationFragment = new NotificationFragment();
+    private final WorkFragment workFragment = new WorkFragment();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,8 +29,7 @@ public class HomeFragment extends Fragment {
         LinearLayout workIndicator = binding.workIndicator;
 
         ViewPager2 viewPager = binding.viewPager;
-        HomePagerAdapter adapter = new HomePagerAdapter(requireActivity());
-        refreshListener = adapter.refreshListener;
+        HomePagerAdapter adapter = new HomePagerAdapter(requireActivity(), notificationFragment, workFragment);
         viewPager.setAdapter(adapter);
 
         notifications.setOnClickListener(v -> {
@@ -53,6 +53,6 @@ public class HomeFragment extends Fragment {
     }
 
     public View.OnClickListener getOnRefreshListener() {
-        return refreshListener;
+        return notificationFragment.getOnRefreshListener();
     }
 }

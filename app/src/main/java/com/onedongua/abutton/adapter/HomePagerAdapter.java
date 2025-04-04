@@ -13,13 +13,14 @@ import com.onedongua.abutton.fragment.WorkFragment;
 public class HomePagerAdapter extends FragmentStateAdapter {
     private final NotificationFragment notificationFragment;
     private final WorkFragment workFragment;
-
     public View.OnClickListener refreshListener;
 
-    public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity,
+                            NotificationFragment notificationFragment,
+                            WorkFragment workFragment) {
         super(fragmentActivity);
-        notificationFragment = new NotificationFragment();
-        workFragment = new WorkFragment();
+        this.notificationFragment = notificationFragment;
+        this.workFragment = workFragment;
         refreshListener = notificationFragment.getOnRefreshListener();
     }
 
@@ -37,6 +38,6 @@ public class HomePagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2; // Two pages: Notification and Work
+        return 2;
     }
 }
