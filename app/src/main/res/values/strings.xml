@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">一个按钮</string>
     <string name="title_notifications">通知</string>
+    <string name="title_home">首页</string>
     <string name="title_post">帖子</string>
     <string name="title_map">地图</string>
     <string name="title_account">我的</string>
@@ -40,4 +41,8 @@
     <string name="post_detail">详情</string>
     <string name="title">标题</string>
     <string name="content">内容</string>
+    <string name="bind_hardware">绑定硬件</string>
+    <string name="set_tag">设置标签</string>
+    <string name="work_empty">无工作</string>
+    <string name="title_work">工作</string>
 </resources>

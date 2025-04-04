@@ -19,6 +19,7 @@ import com.onedongua.abutton.SettingActivity;
 import com.onedongua.abutton.databinding.FragmentAccountBinding;
 import com.onedongua.abutton.model.UserInfo;
 import com.onedongua.abutton.util.JsonUtils;
+import com.onedongua.abutton.widget.ToggleSwitchView;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +36,9 @@ public class AccountFragment extends BaseFragment {
     private TextView accountHardware;
     private TextView accountId;
     private File userFile;
+    private ToggleSwitchView toggleSwitch;
 
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -51,9 +53,21 @@ public class AccountFragment extends BaseFragment {
         accountHardware = binding.accountHardware;
         accountId = binding.accountId;
         settingsItem = binding.settingsItem;
+        toggleSwitch = binding.toggleSwitch;
 
         accountBackground.setOnClickListener(this::onAccountBackgroundClick);
         settingsItem.setOnClickListener(this::onSettingsItemClick);
+
+        toggleSwitch.setOnToggleSwitchListener(position -> {
+            switch (position) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
+        });
 
         return root;
     }

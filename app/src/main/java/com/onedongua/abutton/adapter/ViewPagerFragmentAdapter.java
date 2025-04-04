@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.onedongua.abutton.fragment.AccountFragment;
+import com.onedongua.abutton.fragment.HomeFragment;
 import com.onedongua.abutton.fragment.MapFragment;
-import com.onedongua.abutton.fragment.NotificationFragment;
 import com.onedongua.abutton.fragment.PostFragment;
 
 import java.util.HashMap;
@@ -36,9 +36,9 @@ public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
                 return new AccountFragment();
             case 0:
             default:
-                NotificationFragment notificationFragment = new NotificationFragment();
-                listeners.put(0, notificationFragment.getOnRefreshListener());
-                return notificationFragment;
+                HomeFragment homeFragment = new HomeFragment();
+                listeners.put(0, homeFragment.getOnRefreshListener());
+                return homeFragment;
         }
     }
 

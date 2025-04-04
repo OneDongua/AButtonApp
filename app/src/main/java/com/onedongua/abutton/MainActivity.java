@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
                 int titleId;
                 switch (position) {
                     case 0:
-                        titleId = R.string.title_notifications;
+                        titleId = R.string.title_home;
                         if (menuItem != null) menuItem.setVisible(true);
                         break;
                     case 1:
@@ -74,8 +74,8 @@ public class MainActivity extends BaseActivity {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText(R.string.title_notifications);
-                    tab.setIcon(R.drawable.ic_notifications);
+                    tab.setText(R.string.title_home);
+                    tab.setIcon(R.drawable.ic_home);
                     break;
                 case 1:
                     tab.setText(R.string.title_post);
