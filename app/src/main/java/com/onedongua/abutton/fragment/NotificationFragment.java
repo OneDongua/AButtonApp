@@ -1,8 +1,11 @@
 package com.onedongua.abutton.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +61,12 @@ public class NotificationFragment extends BaseFragment {
 
         notificationRecycler = binding.notificationRecycler;
         adapter = new NotificationAdapter(itemList, position -> {
-            print("TODO");
+            new AlertDialog.Builder(requireContext())
+                    .setMessage("是否删除")
+                    .setPositiveButton(R.string.confirm, (dialog, which) ->
+                            deleteNotification(itemList.get(position).getTime()))
+                    .setNegativeButton(R.string.cancel, null)
+                    .show();
         });
         notificationRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         notificationRecycler.setAdapter(adapter);
@@ -84,8 +92,26 @@ public class NotificationFragment extends BaseFragment {
 
     public View.OnClickListener getOnRefreshListener() {
         return v -> {
-            fetchNotification();
-            fetchGlobalNotification();
+            Location lastLocation = getLocation();
+            refreshLocation();
+
+            Handler handler = new Handler(Looper.getMainLooper());
+            Runnable checkLocationRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    Location currentLocation = getLocation();
+                    if (currentLocation != lastLocation) {
+                        fetchNotification();
+                        fetchGlobalNotification();
+                    } else {
+                        // 每 500 毫秒检查一次位置更新
+                        handler.postDelayed(this, 500);
+                    }
+                }
+            };
+
+            // 开始检查位置更新
+            handler.post(checkLocationRunnable);
         };
     }
 
@@ -94,6 +120,12 @@ public class NotificationFragment extends BaseFragment {
             return ((MainActivity) requireActivity()).location;
         }
         return null;
+    }
+
+    private void refreshLocation() {
+        if (requireActivity() instanceof MainActivity) {
+            ((MainActivity) requireActivity()).refreshLocation();
+        }
     }
 
     private void refreshNotification() {
@@ -213,6 +245,40 @@ public class NotificationFragment extends BaseFragment {
                     Log.e(TAG, "onResponse: ", e);
                     requireActivity().runOnUiThread(() -> print(R.string.unknown_error));
                 }
+            }
+        });
+    }
+
+    private void deleteNotification(long time) {
+        final String email;
+        try {
+            UserInfo userInfo = JsonUtils.fromJsonFile(new File(requireActivity().getFilesDir(), "user.json"), UserInfo.class);
+            if (userInfo == null) {
+                print(R.string.not_login);
+                return;
+            }
+            email = userInfo.getEmail();
+        } catch (IOException e) {
+            print(R.string.unknown_error);
+            Log.e(TAG, "fetchNotification: ", e);
+            return;
+        }
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(serverManager.getServer() + "api/notification/" + email + "/" + time)
+                .delete()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "onFailure: ", e);
+                requireActivity().runOnUiThread(() -> print(R.string.unknown_error));
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                fetchNotification();
             }
         });
     }

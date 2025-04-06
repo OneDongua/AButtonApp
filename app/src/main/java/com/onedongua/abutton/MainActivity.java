@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity {
     private MenuItem menuItem;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
-    private static final int MAX_LOCATION_COUNT = 3;
     private LocationManager locationManager;
     public Location location;
 
@@ -95,7 +94,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 2:
                         titleId = R.string.title_map;
-                        if (menuItem != null) menuItem.setVisible(false);
+                        if (menuItem != null) menuItem.setVisible(true);
                         break;
                     case 3:
                         titleId = R.string.title_account;
@@ -172,6 +171,10 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(this, "未授予位置权限", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void refreshLocation() {
+        requestLocationUpdates();
     }
 
     public static void SHA1(Context context) {

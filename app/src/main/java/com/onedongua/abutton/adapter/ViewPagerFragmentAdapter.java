@@ -31,7 +31,9 @@ public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
                 listeners.put(1, postFragment.getOnRefreshListener());
                 return postFragment;
             case 2:
-                return new MapFragment();
+                MapFragment mapFragment = new MapFragment();
+                listeners.put(2, mapFragment.getOnRefreshListener());
+                return mapFragment;
             case 3:
                 return new AccountFragment();
             case 0:
