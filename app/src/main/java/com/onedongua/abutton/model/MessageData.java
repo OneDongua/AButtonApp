@@ -1,40 +1,50 @@
 package com.onedongua.abutton.model;
 
 public class MessageData {
-    private String user;
+    private String id;
+    private String name;
     private String message;
-    private String timestamp;
+    private Long time;
 
     public MessageData() {
     }
 
-    public MessageData(String user, String message, String timestamp) {
-        this.user = user;
+    public MessageData(String id, String name, String message, Long time) {
+        this.id = id;
+        this.name = name;
         this.message = message;
-        this.timestamp = timestamp;
+        this.time = time;
     }
 
-    public String getUser() {
-        return user;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public Long getTime() {
+        return time;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

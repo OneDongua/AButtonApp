@@ -52,4 +52,7 @@
     <string name="send">发送</string>
     <string name="input_message">请输入消息</string>
     <string name="anonymous">匿名</string>
+    <string name="new_chat">新沟通</string>
+    <string name="chat">沟通</string>
+    <string name="unknown">未知</string>
 </resources>

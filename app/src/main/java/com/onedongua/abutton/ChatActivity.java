@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,10 @@ public class ChatActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.chat);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent intent = getIntent();
         chatId = intent.getLongExtra("id", 0L);
@@ -65,30 +70,44 @@ public class ChatActivity extends BaseActivity {
 
         binding.btnSend.setOnClickListener(v -> {
             String msg = binding.etMessage.getText().toString().trim();
+            UserInfo user = getUser();
+            if (user == null) {
+                print(R.string.unknown_error);
+                return;
+            }
             if (!msg.isEmpty()) {
-                sendMessage(getUser(), msg);
+                sendMessage(user.getId(), user.getName(), msg);
                 binding.etMessage.setText("");
             }
         });
     }
 
-    private String getUser() {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private UserInfo getUser() {
         try {
             File userFile = new File(getFilesDir(), "user.json");
             if (!userFile.exists()) {
                 throw new Exception("Not logged in");
             }
-            UserInfo user = JsonUtils.fromJsonFile(userFile, UserInfo.class);
-            return user.getName();
+            return JsonUtils.fromJsonFile(userFile, UserInfo.class);
         } catch (Exception e) {
             Log.e(TAG, "loadMessages: ", e);
-            return getString(R.string.anonymous);
+            return null;
         }
     }
 
     private void loadMessages() {
         Request request = new Request.Builder()
                 .url(serverManager.getServer() + "api/chat/" + chatId)
+                .get()
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -100,19 +119,19 @@ public class ChatActivity extends BaseActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.body() != null) {
-                    String json = response.body().string();
+                    List<MessageData> data = Arrays.asList(JsonUtils.fromJson(response.body().string(), MessageData[].class));
                     messages.clear();
-                    messages.addAll(Arrays.asList(JsonUtils.fromJson(json, MessageData[].class)));
+                    messages.addAll(data);
                     runOnUiThread(() -> adapter.notifyDataSetChanged());
                 }
             }
         });
     }
 
-    private void sendMessage(String user, String message) {
+    private void sendMessage(String id, String user, String message) {
         try {
             RequestBody body = RequestBody.create(
-                    JsonUtils.toJson(new MessageData(user, message, null)),
+                    JsonUtils.toJson(new MessageData(id, user, message, null)),
                     MediaType.parse("application/json")
             );
             Request request = new Request.Builder()

@@ -41,6 +41,10 @@
             android:name=".PostDetailActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="7bdd910be2fc977e20a5fbf1037831a3" />

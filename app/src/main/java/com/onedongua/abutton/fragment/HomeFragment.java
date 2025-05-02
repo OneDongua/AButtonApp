@@ -53,6 +53,9 @@ public class HomeFragment extends Fragment {
     }
 
     public View.OnClickListener getOnRefreshListener() {
-        return notificationFragment.getOnRefreshListener();
+        return v -> {
+            notificationFragment.getOnRefreshListener().onClick(v);
+            workFragment.getOnRefreshListener().onClick(v);
+        };
     }
 }

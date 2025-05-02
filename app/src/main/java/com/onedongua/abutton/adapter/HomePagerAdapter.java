@@ -1,7 +1,5 @@
 package com.onedongua.abutton.adapter;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -13,7 +11,6 @@ import com.onedongua.abutton.fragment.WorkFragment;
 public class HomePagerAdapter extends FragmentStateAdapter {
     private final NotificationFragment notificationFragment;
     private final WorkFragment workFragment;
-    public View.OnClickListener refreshListener;
 
     public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity,
                             NotificationFragment notificationFragment,
@@ -21,7 +18,6 @@ public class HomePagerAdapter extends FragmentStateAdapter {
         super(fragmentActivity);
         this.notificationFragment = notificationFragment;
         this.workFragment = workFragment;
-        refreshListener = notificationFragment.getOnRefreshListener();
     }
 
     @NonNull
